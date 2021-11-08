@@ -60,21 +60,19 @@ def cart(request):
         for item in cartx:
             products_cost += item.cost
 
-        if products_cost >= 3000:
+        if products_cost >= 1:
             delivery_fees = 20
-        elif products_cost > 0 and products_cost < 3000:
-            delivery_fees = 10
         else:
             delivery_fees = 0
             messages.error(request, 'YOUR CART IN EMPTY!')
         
         total_cost = products_cost + delivery_fees
         
-        return render(request, 'web/cart.html', {"cartx": cartx, "products_cost": products_cost, "delivery_fees": delivery_fees, "total_cost": total_cost})
+        return render(request, 'cart.html', {"cartx": cartx, "products_cost": products_cost, "delivery_fees": delivery_fees, "total_cost": total_cost})
     except:
         messages.error(request, 'YOUR CART IS EMPTY!')
     
-    return render(request, 'web/cart.html')
+    return render(request, 'cart.html')
 
 
 def addtocart(request, product_id, quantity):

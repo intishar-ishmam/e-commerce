@@ -16,7 +16,7 @@
       <h1>{{ item.name }}</h1>
       <div class="price">TK {{ item.final_price }}</div>
       <form class="form">
-        <a href="#" class="addCart">Add To Cart</a>
+        <a href="{% url 'addtocart' product_id=item.id quantity=1 %}" class="addCart">Add To Cart</a>
       </form>
       <h3>Product Detail</h3>
       <p>

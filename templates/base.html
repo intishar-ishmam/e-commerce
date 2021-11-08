@@ -13,6 +13,9 @@
     <!-- Glide js -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Glide.js/3.4.1/css/glide.core.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Glide.js/3.4.1/css/glide.theme.css">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+
+
     <!-- Custom StyleSheet -->
     <link rel="stylesheet" href="{% static '/css/styles.css' %}" />
     <title>E-commerce Website</title>
@@ -65,7 +68,7 @@
                         <div class="icon">
                             <i class="bx bx-search"></i>
                         </div>
-                        <a href="#" class="icon">
+                        <a href="{% url 'cart' %}" class="icon">
                             <i class="bx bx-cart"></i>
                             
                         </a>
@@ -76,7 +79,7 @@
                     <div class="icon">
                         <i class="bx bx-search"></i>
                     </div>
-                    <a href="#" class="icon">
+                    <a href="{% url 'cart' %}" class="icon">
                         <i class="bx bx-cart"></i>
                     
                     </a>
