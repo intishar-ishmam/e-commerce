@@ -129,15 +129,11 @@ def search(request):
         if not check_required(request, ['key']):
             key = set_validate(request, 'key', sanitize=True)
             products = Products.objects.filter(name__icontains=key).exclude(status='hidden')
-            return render(request, 'web/search.html', {"products": products, "key": key})
+            return render(request, 'search.html', {"products": products, "key": key})
         else:
-            return render(request, 'web/search.html')
+            return render(request, 'search.html')
     else:
-        return render(request, 'web/search.html')
-
-
-def privacy_policy(request):
-    return render(request, 'web/privacy-policy.html')
+        return render(request, 'search.html')
 
 
 def contact(request):
