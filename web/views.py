@@ -121,7 +121,7 @@ def quantity(request, op, pid):
 
 
 def success(request):
-    return render(request, 'web/order_done.html')
+    return render(request, 'order_done.html')
 
 
 def search(request):

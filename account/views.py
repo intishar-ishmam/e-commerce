@@ -150,6 +150,7 @@ def myaccount(request):
     else:
         return None
 
+
 def myorders(request):
     if not logged_in(request):
         return redirect('login')
@@ -182,7 +183,7 @@ def logout(request):
 
 
 def confirmorder(request):
-    if not logged_i(request):
+    if not logged_in(request):
         messages.error(request, 'PLEASE LOGIN / REGISTER TO CONFIRM ORDER!')
         return redirect('login')
     else:
@@ -198,7 +199,7 @@ def confirmorder(request):
             client = Clients.objects.get(id=client_id)
         except:
             return redirect('login')
-        return render(request, 'account/confirmorder.html', {"client": client} )
+        return render(request, 'order_form.html', {"client": client} )
     
     elif request.method == "POST":
         cost = Cart.objects.filter(cart_no=request.session['cart_no'])
@@ -206,10 +207,8 @@ def confirmorder(request):
         for item in cost:
             pcost += item.cost
         
-        if pcost >= 3000:
+        if pcost >= 1:
             delivery_fees = 20
-        elif pcost > 0 and pcost < 3000:
-            delivery_fees = 10
         else:
             delivery_fees = 0
 
@@ -220,20 +219,20 @@ def confirmorder(request):
         if total_cost <= 0:
             return redirect('index')
 
-        Orders.objects.create (
+        Orders.objects.create(
             cart_no = request.session['cart_no'],
             order_no = order_no,
             client_id = client_id,
             full_name = set_validate(request, 'full_name', sanitize=True),
-            mobile = set_validate(request, 'mobile', sanitize=True),
+            mobile = set_validate(request, 'mobile', sanitize=False),
             address = set_validate(request, 'address', sanitize=True),
             cost = pcost,
             delivery_fees = delivery_fees,
             total_cost = total_cost,
-            created_at = created_at,
+            created_at = created_at
         )
         del request.session['cart_no']
-        return redirect('success') # will be redirect to a order confirm page
+        return redirect('success')  # will be redirect to a order confirm page
     else:
         return None
 
